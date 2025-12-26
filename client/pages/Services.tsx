@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { typography, spacing } from "@/utils/typography";
+import Footer from "@/components/Footer";
 
 export default function Services() {
   return (
@@ -19,35 +22,35 @@ export default function Services() {
 function Header() {
   return (
     <header className="w-full bg-[#DBEAFE] shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 md:px-8 max-w-[1920px] flex items-center justify-between h-16">
+      <div className={spacing.container + " flex items-center justify-between h-16"}>
         <Link to="/" className="flex items-center gap-2">
           <img 
             src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F7bcf3b6829fc467ea4a0c747871be1c5?format=webp&width=800" 
             alt="Crestcode Logo" 
-            className="w-11 h-11 object-contain"
+            className="w-8 h-8 object-contain"
           />
           <div className="flex flex-col">
-            <span className="text-[19px] font-bold leading-7 text-[#111827]">Crestcode</span>
-            <span className="text-[13px] font-normal leading-5 text-[#9CA3AF]">(India)</span>
+            <span className="text-lg font-bold text-gray-900">Crestcode</span>
+            <span className="text-xs text-gray-500">(India)</span>
           </div>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/" className={typography.nav + " text-gray-600 hover:text-gray-900 transition-colors"}>
             Home
           </Link>
-          <Link to="/services" className="text-base font-bold leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">
+          <Link to="/services" className={typography.navActive + " text-gray-900 hover:text-gray-900 transition-colors"}>
             Services
           </Link>
-          <Link to="AboutUs" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/AboutUs" className={typography.nav + " text-gray-600 hover:text-gray-900 transition-colors"}>
             About Us
           </Link>
-          <a href="#" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/Blogs" className={typography.nav + " text-gray-600 hover:text-gray-900 transition-colors"}>
             Blogs
-          </a>
+          </Link>
         </nav>
-        <button className="bg-[#111827] text-[#DBEAFE] px-5 py-2 rounded font-semibold text-[15px] leading-6 hover:bg-[#1f2937] transition-colors">
+        <Button asChild>
           <Link to="/Getintouch">Get In Touch</Link>
-        </button>
+        </Button>
       </div>
     </header>
   );
@@ -55,26 +58,24 @@ function Header() {
 
 function HeroSection() {
   return (
-    <section className="w-full bg-[#9BB4C2] py-24 lg:py-32">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="flex flex-col items-center gap-6 text-center">
-          <h1 className="text-5xl lg:text-[59px] font-bold leading-tight lg:leading-[60px] text-[#111827]">
+    <section className="w-full bg-[#9BB4C2] py-10 md:py-12">
+      <div className={spacing.containerSmall + " text-center"}>
+        <div className="flex flex-col items-center gap-4 md:gap-5 text-center">
+          <h1 className={typography.h1}>
             Our Services
           </h1>
-          <p className="text-xl lg:text-[22px] leading-relaxed lg:leading-[32px] text-[#111827] max-w-3xl">
+          <p className={typography.pLarge + " max-w-3xl"}>
             Comprehensive product development services from strategy to support
           </p>
-          <button onClick={() => {
-              const whyChooseUsSection = document.querySelector('.py-24.bg-gray-50'); 
-               if (whyChooseUsSection) {
-                 whyChooseUsSection.scrollIntoView({ behavior: 'smooth' });
-                }
-              }} 
-              className="mt-6 bg-[#111827] text-white px-12 py-4 rounded-lg border-2 border-[#111827] text-xl font-semibold hover:bg-[#1f2937] transition-colors">
-
+          <Button
+            size="lg"
+            onClick={() => {
+              const el = document.getElementById("why-choose-us");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             View Services
-            
-          </button>
+          </Button>
         </div>
       </div>
     </section>
@@ -83,61 +84,84 @@ function HeroSection() {
 
 function WhyChooseUsSection() {
   return (
-    <section className="w-full py-24 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-4xl lg:text-5xl font-bold text-[#111827] text-center mb-20">
-          Why Choose Us?
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            title="Dedicated, Embedded POD Teams"
-            description="Engineers, designers, QA, and DevOps form stable teams assigned to each product for long-term consistency."
-            borderColor="border-[#CAF2D8]"
-          />
-          <FeatureCard
-            title="Execution-First Philosophy"
-            description="We specialize in delivery excellence and take accountability for results, not just hours billed."
-            borderColor="border-[#D7E5F6]"
-          />
-          <FeatureCard
-            title="Founder/Enterprise-Friendly Operations"
-            description="We manage the engineering and offer strategic input so leadership can focus on sales, GTM, and growth."
-            borderColor="border-[#F6CDD7]"
-          />
-          <FeatureCard
-            title="Technical Partner, Not Vendor"
-            description="We don't just execute code. We provide proactive technical strategy, risk mitigation, and architectural consultation to drive the long-term success of your product."
-            borderColor="border-[#E1CEF3]"
-          />
-          <FeatureCard
-            title="Product-Led Decision Making"
-            description="We prioritize roadmap clarity, user impact, and measurable outcomes - aligning engineering execution with business goals at every stage of the product lifecycle."
-            borderColor="border-[#9BB4C2]"
-          />
+    <section id="why-choose-us" className="w-full py-6 md:py-8 bg-gray-50">
+      <div className={spacing.container}>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+          <div className="lg:col-span-4">
+            <div className="h-full min-h-[180px] rounded-lg border border-[#FFF9C4] bg-[#FFF4B1] flex items-center justify-center p-4">
+              <h2 className={typography.h2 + " text-center"}>Why Choose Us?</h2>
+            </div>
+          </div>
+          <div className="lg:col-span-8">
+            <div className="flex flex-col items-center gap-4">
+              {/* Top row - 3 cards */}
+              <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="h-full">
+                  <FeatureCard
+                    title="Dedicated, Embedded POD Teams"
+                    description="Engineers, designers, QA, and DevOps form stable teams assigned to each product for long-term consistency."
+                    bgColor="bg-[#CAF2D8]"
+                  />
+                </div>
+                <div className="h-full">
+                  <FeatureCard
+                    title="Execution-First Philosophy"
+                    description="We specialize in delivery excellence and take accountability for results,not just hours billed."
+                    bgColor="bg-[#D7E5F6]"
+                  />
+                </div>
+                <div className="h-full">
+                  <FeatureCard
+                    title="Founder/Enterprise-Friendly Operations"
+                    description="We manage the engineering and offer strategic input so leadership can focus on sales, GTM, and growth."
+                    bgColor="bg-[#F6CDD7]"
+                  />
+                </div>
+              </div>
+              
+              {/* Bottom row - 2 centered cards */}
+              <div className="w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="h-full">
+                  <FeatureCard
+                    title="Technical Partner, Not Vendor"
+                    description="We don't just execute code. We provide proactive technical strategy, risk mitigation, and architectural consultation."
+                    bgColor="bg-[#E1CEF3]"
+                  />
+                </div>
+                <div className="h-full">
+                  <FeatureCard
+                    title="Product-Led Decision Making"
+                    description="We prioritize roadmap clarity, user impact, and measurable outcomes - aligning engineering with business goals."
+                    bgColor="bg-[#9BB4C2]"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function FeatureCard({ title, description, borderColor }: { title: string; description: string; borderColor: string }) {
+function FeatureCard({ title, description, bgColor }: { title: string; description: string; bgColor: string }) {
   return (
-    <div className={`flex flex-col items-center gap-5 p-8 rounded-lg border-2 ${borderColor} bg-white shadow-sm`}>
-      <h3 className="text-xl font-bold text-[#111827] text-center">{title}</h3>
-      <p className="text-base leading-[30px] text-[#4B5563] text-center">{description}</p>
+    <div className={`flex flex-col items-center gap-2 p-3 rounded-lg ${bgColor} h-full w-full`}>
+      <h3 className={typography.h4 + " text-center text-sm md:text-base flex-none"}>{title}</h3>
+      <p className="text-sm text-center text-gray-600 flex-grow flex items-center">{description}</p>
     </div>
   );
 }
 
 function TechStackSection() {
   return (
-    <section className="w-full py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h2 className="text-4xl lg:text-[35px] font-bold text-[#111827] mb-4">
+    <section className="w-full py-10 md:py-12 bg-white">
+      <div className={spacing.container}>
+        <div className="text-center mb-8 max-w-3xl mx-auto">
+          <h2 className={typography.h2 + " mb-3"}>
             Our Tech Stack
           </h2>
-          <p className="text-lg text-[#4B5563]">
+          <p className={typography.p}>
             We work with cutting-edge technologies to build modern, scalable applications
           </p>
         </div>
@@ -162,7 +186,7 @@ function TechStackSection() {
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F94444874a2324a70bb845ad921640476?format=webp&width=800"
               alt="Tech Stack Diagram"
-              className="w-full max-w-[800px] h-auto rounded-[30px] border-4 border-[#60A5FA] object-contain"
+              className="w-full max-w-[640px] h-auto rounded-[30px] border-4 border-[#60A5FA] object-contain"
             />
           </div>
 
@@ -189,21 +213,21 @@ function TechStackSection() {
 function TechCard({ title, description }: { title: string; description: string }) {
   return (
     <div className="bg-[#0EA5E9] text-white p-6 rounded-xl border-2 border-white shadow-sm">
-      <h3 className="text-lg lg:text-[19px] font-bold mb-2 leading-7">{title}</h3>
-      <p className="text-sm lg:text-[15px] leading-6">{description}</p>
+      <h3 className="text-base font-semibold mb-1">{title}</h3>
+      <p className="text-sm leading-6">{description}</p>
     </div>
   );
 }
 
 function MVPSection() {
   return (
-    <section className="w-full py-24 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="mb-16">
-          <h2 className="text-4xl lg:text-[35px] font-bold text-[#111827] mb-4">
+    <section className="w-full py-10 md:py-12 bg-white">
+      <div className={spacing.container}>
+        <div className="mb-8">
+          <h2 className={typography.h2 + " mb-3"}>
             Your MVP, Delivered Right
           </h2>
-          <p className="text-2xl lg:text-[28px] text-[#4B5563] leading-relaxed">
+          <p className={typography.pLarge}>
             Fast MVP Development, Customer-Validated Build, No Technical Overwhelm, Predictable Costs.
           </p>
         </div>
@@ -232,35 +256,31 @@ function MVPSection() {
 
 function MVPCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="border border-[#6B7280] rounded-lg p-8">
-      <div className="mb-6">{icon}</div>
-      <h3 className="text-2xl lg:text-[30px] font-bold text-[#111827] mb-6 leading-7">
-        {title}
-      </h3>
-      <p className="text-xl lg:text-2xl text-[#6B7280] leading-[30px]">
-        {description}
-      </p>
+    <div className="rounded-lg border border-[#93C5FD] bg-[#DBEAFE] p-5">
+      <div className="mb-4">{icon}</div>
+      <h3 className={typography.h4 + " mb-2"}>{title}</h3>
+      <p className={typography.p}>{description}</p>
     </div>
   );
 }
 
 function EngineeringAtScaleSection() {
   return (
-    <section className="w-full py-24 bg-gray-50">
-      <div className="container mx-auto px-4 max-w-4xl text-center mb-16">
-        <h2 className="text-4xl lg:text-[35px] font-bold text-[#111827] mb-6">
+    <section className="w-full py-10 md:py-12 bg-gray-50">
+      <div className={spacing.containerSmall + " text-center mb-8"}>
+        <h2 className={typography.h2 + " mb-3"}>
           Predictable Engineering at Scale
         </h2>
-        <p className="text-2xl lg:text-[28px] text-[#4B5563] leading-relaxed">
+        <p className={typography.pLarge}>
           Enterprise-Grade Architecture , Dedicated Build Teams, and Zero-Noise Delivery all working in perfect sync.
         </p>
       </div>
       
-      <div className="container mx-auto px-4">
+      <div className={spacing.container}>
         <img 
           src="https://api.builder.io/api/v1/image/assets/TEMP/2f8ba7c14946dfc46ecb08d83af54a4b1958f096?width=3840" 
           alt="Engineering Process" 
-          className="w-full max-w-7xl mx-auto rounded-lg"
+          className="w-full max-w-4xl mx-auto rounded-lg object-contain"
         />
       </div>
     </section>
@@ -269,103 +289,22 @@ function EngineeringAtScaleSection() {
 
 function CTASection() {
   return (
-    <section className="w-full py-24 bg-[#9BB4C2]">
-      <div className="container mx-auto px-4 max-w-5xl text-center">
-        <h2 className="text-4xl lg:text-[35px] font-bold text-[#111827] mb-6">
+    <section className="w-full py-10 md:py-12 bg-[#9BB4C2]">
+      <div className={spacing.containerSmall + " text-center"}>
+        <h2 className={typography.h2 + " mb-3"}>
           Ready to Start Your Project?
         </h2>
-        <p className="text-lg lg:text-lg text-[#111827] mb-10 max-w-2xl mx-auto">
+        <p className={typography.p + " max-w-2xl mx-auto mb-5"}>
           Let's discuss how our services can help you build the perfect solution for your business.
         </p>
-        <button className="bg-[#111827] text-white px-10 py-4 rounded-lg text-xl font-bold hover:bg-[#1f2937] transition-colors inline-flex items-center gap-3">
-          Start Your Project
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4.16675 10H15.8334" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-            <path d="M10 4.16675L15.8333 10.0001L10 15.8334" stroke="white" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
+        <Button size="lg" asChild>
+          <Link to="/Getintouch">Start Your Project</Link>
+        </Button>
       </div>
     </section>
   );
 }
 
-function Footer() {
-  return (
-    <footer className="w-full bg-[#DBEAFE] py-12">
-      <div className="container mx-auto px-8 max-w-[1462px]">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-2 mb-6">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F7bcf3b6829fc467ea4a0c747871be1c5?format=webp&width=800" 
-                alt="Crestcode Logo" 
-                className="w-11 h-11 object-contain"
-              />
-              <div className="flex flex-col">
-                <span className="text-[19px] font-bold leading-7 text-[#111827]">Crestcode</span>
-                <span className="text-[13px] font-normal leading-5 text-[#9CA3AF]">(India)</span>
-              </div>
-            </div>
-            <p className="text-[15px] leading-6 text-[#111827] mb-6 max-w-md">
-              Engineering digital products that matter. 
-              From idea to launch-we build reliable, 
-              scalable, human-centered products for
-              startups, businesses, and entrepreneurs.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-[#9CA3AF] hover:text-[#111827] transition-colors">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13.3335 6.66663C14.6596 6.66663 15.9313 7.19341 16.869 8.13109C17.8067 9.06877 18.3335 10.3405 18.3335 11.6666V17.5H15.0002V11.6666C15.0002 11.2246 14.8246 10.8007 14.512 10.4881C14.1994 10.1756 13.7755 9.99996 13.3335 9.99996C12.8915 9.99996 12.4675 10.1756 12.155 10.4881C11.8424 10.8007 11.6668 11.2246 11.6668 11.6666V17.5H8.3335V11.6666C8.3335 10.3405 8.86028 9.06877 9.79796 8.13109C10.7356 7.19341 12.0074 6.66663 13.3335 6.66663Z" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M4.99984 7.5H1.6665V17.5H4.99984V7.5Z" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M3.33317 4.99996C4.25365 4.99996 4.99984 4.25377 4.99984 3.33329C4.99984 2.41282 4.25365 1.66663 3.33317 1.66663C2.4127 1.66663 1.6665 2.41282 1.6665 3.33329C1.6665 4.25377 2.4127 4.99996 3.33317 4.99996Z" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-          
-          <div className="md:col-span-3">
-            <h4 className="text-base font-bold leading-6 text-[#111827] mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><Link to="/Internship" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Internships</Link></li>
-              <li><a href="#" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Privacy policy</a></li>
-              <li><Link to="/Getintouch" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Get In Touch</Link></li>
-              <li><Link to="/Hackathon" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Hackathon</Link></li>
-              <li><a href="#" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Careers</a></li>
-            </ul>
-          </div>
-          
-          <div className="md:col-span-4">
-            <h4 className="text-[15px] font-bold leading-6 text-[#111827] mb-4">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1 flex-shrink-0">
-                  <path d="M13.3335 2.66663H2.66683C1.93045 2.66663 1.3335 3.26358 1.3335 3.99996V12C1.3335 12.7363 1.93045 13.3333 2.66683 13.3333H13.3335C14.0699 13.3333 14.6668 12.7363 14.6668 12V3.99996C14.6668 3.26358 14.0699 2.66663 13.3335 2.66663Z" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M14.6668 4.66663L8.68683 8.46663C8.48101 8.59558 8.24304 8.66397 8.00016 8.66397C7.75729 8.66397 7.51932 8.59558 7.3135 8.46663L1.3335 4.66663" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <a href="mailto:contact@crestcode.in" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">contact@crestcode.in</a>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1 flex-shrink-0">
-                  <path d="M13.3332 6.66671C13.3332 10.6667 7.99984 14.6667 7.99984 14.6667C7.99984 14.6667 2.6665 10.6667 2.6665 6.66671C2.6665 5.25222 3.22841 3.89567 4.2286 2.89547C5.2288 1.89528 6.58535 1.33337 7.99984 1.33337C9.41433 1.33337 10.7709 1.89528 11.7711 2.89547C12.7713 3.89567 13.3332 5.25222 13.3332 6.66671Z" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M8 8.66663C9.10457 8.66663 10 7.7712 10 6.66663C10 5.56206 9.10457 4.66663 8 4.66663C6.89543 4.66663 6 5.56206 6 6.66663C6 7.7712 6.89543 8.66663 8 8.66663Z" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span className="text-[15px] leading-5 text-[#111827]">Chennai, India</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-        <div className="border-t border-[#4B5563] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[13px] leading-5 text-[#6B7280]">© 2025 Crestcode India. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-[13px] leading-5 text-[#6B7280] hover:text-[#111827] transition-colors">Privacy Policy</a>
-            <a href="#" className="text-[13px] leading-5 text-[#6B7280] hover:text-[#111827] transition-colors">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 function LaunchFasterIcon() {
   return (

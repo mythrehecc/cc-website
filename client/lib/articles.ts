@@ -13,18 +13,6 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    id: "1",
-    title: "Building Scalable Microservices: A Complete Guide",
-    description:
-      "Learn how to design and implement microservices architecture that scales with your business growth.",
-    category: "Technology",
-    date: "March 15, 2024",
-    readTime: "8 min read",
-    author: "Rajesh Kumar",
-    image: "https://api.builder.io/api/v1/image/assets/TEMP/2909684d209b589c415a5dda4a5e986cc01adb50?width=1242",
-    featured: true,
-  },
-  {
     id: "2",
     title: "Future of AI in Product Development: Transforming Ideas into Reality",
     description:

@@ -1,26 +1,43 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Footer from '@/components/Footer';
 
+// Define typography and spacing constants
+const typography = {
+  h2: 'text-3xl md:text-4xl font-bold',
+  h4: 'text-xl font-semibold',
+  p: 'text-base',
+  pLarge: 'text-lg',
+  pSmall: 'text-sm',
+};
+
+const spacing = {
+  container: 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8',
+  section: 'py-12 md:py-16',
+};
+
+// Header Component
 function Header() {
   return (
     <header className="w-full bg-[#DBEAFE] shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 md:px-8 max-w-[1920px] flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2">
+      <div className={spacing.container + " flex items-center justify-between h-16"}>
+        <div className="flex items-center gap-2">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F7bcf3b6829fc467ea4a0c747871be1c5?format=webp&width=800"
             alt="Crestcode Logo"
-            className="w-11 h-11 object-contain"
+            className="w-8 h-8 object-contain"
           />
           <div className="flex flex-col">
             <span className="text-[19px] font-bold leading-7 text-[#111827]">Crestcode</span>
             <span className="text-[13px] font-normal leading-5 text-[#9CA3AF]">(India)</span>
           </div>
-        </Link>
+        </div>
+
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/" className="text-base font-bold leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">
             Home
           </Link>
-          <Link to="/services" className="text-base font-normal leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">
+          <Link to="/Services" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
             Services
           </Link>
           <Link to="/AboutUs" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
@@ -30,449 +47,850 @@ function Header() {
             Blogs
           </Link>
         </nav>
-        <button className="bg-[#111827] text-[#DBEAFE] px-5 py-2 rounded font-semibold text-[15px] leading-6 hover:bg-[#1f2937] transition-colors">
-          <Link to="/Getintouch">Get In Touch</Link>
-        </button>
+        <Link to="/Getintouch" className="bg-[#111827] text-[#DBEAFE] px-5 py-2 rounded font-semibold text-[15px] leading-6 hover:bg-[#1f2937] transition-colors">
+          Get In Touch
+        </Link>
       </div>
     </header>
   );
 }
 
-function Footer() {
+export default function StudentsHackathon() {
+  const [problem1Expanded, setProblem1Expanded] = useState(false);
+  const [problem2Expanded, setProblem2Expanded] = useState(false);
+
   return (
-    <footer className="w-full bg-[#DBEAFE] py-12">
-      <div className="container mx-auto px-8 max-w-[1462px]">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-2 mb-6">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F7bcf3b6829fc467ea4a0c747871be1c5?format=webp&width=800"
-                alt="Crestcode Logo"
-                className="w-11 h-11 object-contain"
-              />
-              <div className="flex flex-col">
-                <span className="text-[19px] font-bold leading-7 text-[#111827]">Crestcode</span>
-                <span className="text-[13px] font-normal leading-5 text-[#9CA3AF]">(India)</span>
-              </div>
-            </div>
-            <p className="text-base text-gray-600 mb-6">
-              We are a team of passionate developers and designers creating amazing digital experiences.
+    <>
+      <Header />
+      {/* Hero Section */}
+      <section className="relative w-full bg-gray-900 min-h-[60vh] flex items-center justify-center">
+        <div className="absolute inset-0 overflow-hidden">
+          <img 
+            src="https://api.builder.io/api/v1/image/assets/TEMP/460091f9b91edb0a42bb9251be1272248c781cf2?width=2000" 
+            alt="Hackathon Background" 
+            className="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-900/60 to-gray-900/80"></div>
+        </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center space-y-6 py-16 md:py-24">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Student's Hackathon 2025
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+              Innovate. Build. Compete. Win.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="text-gray-500 hover:text-gray-700">
-                <span className="sr-only">Facebook</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fillRule="evenodd"
-                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700">
-                <span className="sr-only">Instagram</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fillRule="evenodd"
-                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700">
-                <span className="sr-only">Twitter</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-              </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700">
-                <span className="sr-only">GitHub</span>
-                <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fillRule="evenodd"
-                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
+            <div className="pt-4">
+              <Link 
+                to="#top-ideators" 
+                className="inline-flex items-center justify-center px-8 py-3 bg-white text-gray-900 rounded-lg text-base font-semibold hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('top-ideators');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                View Hackathon Results
+              </Link>
             </div>
-          </div>
-          <div className="md:col-span-2">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  Team
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="md:col-span-2">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  Web Development
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  Mobile Apps
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  UI/UX Design
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-base text-gray-600 hover:text-gray-900">
-                  Cloud Solutions
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="md:col-span-3">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Us</h3>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <svg
-                  className="h-5 w-5 text-gray-500 mr-2 mt-0.5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <span className="text-base text-gray-600">123 Tech Street, Bangalore, India</span>
-              </li>
-              <li className="flex items-center">
-                <svg
-                  className="h-5 w-5 text-gray-500 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <a href="mailto:info@crestcode.com" className="text-base text-gray-600 hover:text-gray-900">
-                  info@crestcode.com
-                </a>
-              </li>
-              <li className="flex items-center">
-                <svg
-                  className="h-5 w-5 text-gray-500 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                <a href="tel:+911234567890" className="text-base text-gray-600 hover:text-gray-900">
-                  +91 12345 67890
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
-        <div className="border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-500 text-center">
-            &copy; {new Date().getFullYear()} Crestcode. All rights reserved.
+      </section>
+
+      {/* Overview Section */}
+      <section className="py-8 md:py-10">
+        <div className={spacing.container + " space-y-3"}>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Overview</h2>
+          <p className="text-base text-gray-600 max-w-4xl mx-auto text-center">
+            This 48-hour hackathon invites Engineering and MCA students from across India to come together and build innovative, full-stack tech solutions. Whether you're solving real-world problems or showcasing a unique idea, this is your chance to shine.
           </p>
         </div>
-      </div>
-    </footer>
-  );
-}
-
-function ProblemSection({ title, children }: { title: string; children: React.ReactNode }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-  
-  return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h3 className="text-[28px] font-bold text-gray-900">{title}</h3>
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="text-blue-600 hover:text-blue-800 font-medium text-lg flex items-center gap-1"
-        >
-          {isExpanded ? 'Show Less' : 'Read More'}
-          <svg
-            className={`w-5 h-5 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </div>
-      
-      <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-[5000px]' : 'max-h-32'}`}>
-        <div className={`${isExpanded ? '' : 'line-clamp-3'}`}>
-          {children}
-        </div>
-        {!isExpanded && <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>}
-      </div>
-    </div>
-  );
-}
-
-export default function StudentsHackathon() {
-  const [activeTab, setActiveTab] = useState('problem1');
-
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      
-      {/* Hero Section */}
-      <section className="relative w-full h-[867px] bg-gray-900 overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src="[https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F8a5e5f1f5b5f4c3e9e0b3c3d3e3f4a5e?format=webp&width=3840](https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F8a5e5f1f5b5f4c3e9e0b3c3d3e3f4a5e?format=webp&width=3840)"
-            alt="Hackathon Background"
-            className="w-full h-full object-cover opacity-30"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-900/80 to-gray-900/90"></div>
-        </div>
-        
-        <div className="relative max-w-[1920px] mx-auto px-4 md:px-8 h-full flex flex-col justify-center">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
-              Crestcode <span className="text-blue-400">Hackathon 2024</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl">
-              Join us for an exciting 48-hour coding competition where innovation meets technology. Build, create, and showcase your skills!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="#register"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-lg text-lg transition-colors duration-300 text-center"
-              >
-                Register Now
-              </a>
-              <a
-                href="#challenges"
-                className="bg-white/10 hover:bg-white/20 text-white font-semibold py-4 px-8 rounded-lg text-lg border border-white/20 transition-colors duration-300 text-center"
-              >
-                View Challenges
-              </a>
-            </div>
-          </div>
-        </div>
       </section>
 
-      {/* About Section */}
-      <section className="py-20 px-4 lg:px-24 bg-white" id="about">
-        <div className="max-w-[1689px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h2 className="text-[35px] font-bold text-gray-900 leading-10">About the Hackathon</h2>
-              <p className="text-[22px] text-gray-600 leading-relaxed">
-                The Crestcode Hackathon is a 48-hour coding competition where developers, designers, and innovators come together to build amazing projects. Whether you're a beginner or an experienced coder, this is your chance to learn, collaborate, and create something incredible.
-              </p>
-              <p className="text-[22px] text-gray-600 leading-relaxed">
-                With mentorship from industry experts, exciting prizes, and the opportunity to work with cutting-edge technologies, this is an event you won't want to miss!
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-blue-50 p-6 rounded-xl">
-                <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">48 Hours</h3>
-                <p className="text-gray-600">Non-stop coding and innovation</p>
-              </div>
-              <div className="bg-purple-50 p-6 rounded-xl">
-                <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Team Up</h3>
-                <p className="text-gray-600">Form teams of 2-4 members</p>
-              </div>
-              <div className="bg-green-50 p-6 rounded-xl">
-                <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Prizes</h3>
-                <p className="text-gray-600">Exciting rewards for winners</p>
-              </div>
-              <div className="bg-yellow-50 p-6 rounded-xl">
-                <div className="w-14 h-14 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">Network</h3>
-                <p className="text-gray-600">Connect with industry leaders</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Schedule Section */}
-      <section className="py-20 px-4 lg:px-24 bg-gray-50">
-        <div className="max-w-[1689px] mx-auto">
-          <h2 className="text-[35px] font-bold text-gray-900 leading-10 text-center mb-12">Event Schedule</h2>
+      {/* Goals Section */}
+      <section className="py-10 md:py-12 bg-white">
+        <div className={spacing.container + " space-y-8 text-center"}>
+          <h2 className={typography.h2 + " text-gray-900"}>Goals</h2>
           
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-8">
-              <div className="flex items-start gap-6">
-                <div className="bg-blue-600 text-white rounded-lg p-4 text-center min-w-[120px]">
-                  <p className="text-2xl font-bold">Day 1</p>
-                  <p className="text-sm">Friday, June 10</p>
+          {/* Goal 1 */}
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="w-full lg:max-w-[300px] aspect-video rounded-xl overflow-hidden shadow-md">
+              <img 
+                src="https://api.builder.io/api/v1/image/assets/TEMP/f23272996942e3d12140dc5a944491b013e34748?width=1000" 
+                alt="Innovation" 
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm max-w-2xl w-full">
+              <div className="w-16 h-16 rounded-full border-4 border-blue-400 bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-blue-500">1</span>
+              </div>
+              <p className={typography.pLarge + " text-gray-600"}>
+                Encourage innovation and practical problem-solving among students.
+              </p>
+            </div>
+          </div>
+
+          {/* Goal 2 */}
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="w-full lg:max-w-[300px] aspect-video rounded-xl overflow-hidden shadow-md">
+              <img 
+                src="https://api.builder.io/api/v1/image/assets/TEMP/278d51a010bed37fdfd78b99d819906979560350?width=1602" 
+                alt="Teamwork" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm max-w-2xl w-full">
+              <div className="w-16 h-16 rounded-full border-4 border-blue-400 bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-blue-500">2</span>
+              </div>
+              <p className={typography.pLarge + " text-gray-600"}>
+                Provide a platform to showcase technical and teamwork skills.
+              </p>
+            </div>
+          </div>
+
+          {/* Goal 3 */}
+          <div className="flex flex-col lg:flex-row items-center gap-8">
+            <div className="w-full lg:max-w-[300px] aspect-video rounded-xl overflow-hidden shadow-md">
+              <img 
+                src="https://api.builder.io/api/v1/image/assets/TEMP/716a0fdc76fadc5c90637424c8d7d22d56b87d7e?width=1648" 
+                alt="Awareness" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm max-w-2xl w-full">
+              <div className="w-16 h-16 rounded-full border-4 border-blue-400 bg-white shadow-lg flex items-center justify-center flex-shrink-0">
+                <span className="text-2xl font-bold text-blue-500">3</span>
+              </div>
+              <p className={typography.pLarge + " text-gray-600"}>
+                Promote awareness of pressing social and community challenges.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Important Dates Section */}
+      <section className="py-12 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Important Dates</h2>
+            <p className="text-gray-600 text-lg">Mark your calendars for these key milestones</p>
+          </div>
+          
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-blue-200 -translate-x-1/2"></div>
+            
+            {/* Timeline items */}
+            <div className="space-y-4">
+              {/* Date 1 */}
+              <div className="relative flex flex-col md:flex-row items-center md:odd:flex-row-reverse">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
                 </div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Registration & Breakfast</h3>
-                        <p className="text-gray-600">8:00 AM - 9:00 AM</p>
-                      </div>
-                      <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Main Hall</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Check-in, grab some breakfast, and meet your fellow participants.</p>
+                <div className="md:w-5/12 px-4 py-2">
+                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <h3 className="font-medium text-gray-900">Registrations Open</h3>
+                    <p className="text-sm text-gray-500">TBD</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-6">
-                <div className="bg-white p-4 text-center min-w-[120px]"></div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Opening Ceremony</h3>
-                        <p className="text-gray-600">9:00 AM - 10:00 AM</p>
-                      </div>
-                      <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Main Stage</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Welcome address, rules, and what to expect during the hackathon.</p>
+              {/* Date 2 */}
+              <div className="relative flex flex-col md:flex-row items-center md:odd:flex-row-reverse">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                    <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14"></path>
+                    <path d="M16.5 9.34L7.55 4.23"></path>
+                    <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <div className="md:w-5/12 px-4 py-2">
+                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <h3 className="font-medium text-gray-900">Submission Deadline</h3>
+                    <p className="text-sm text-gray-500">TBD</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-6">
-                <div className="bg-white p-4 text-center min-w-[120px]"></div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Hacking Begins!</h3>
-                        <p className="text-gray-600">10:00 AM</p>
-                      </div>
-                      <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">All Areas</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Start working on your projects. Mentors will be available to help.</p>
+              {/* Date 3 */}
+              <div className="relative flex flex-col md:flex-row items-center md:odd:flex-row-reverse">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div className="md:w-5/12 px-4 py-2">
+                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <h3 className="font-medium text-gray-900">Mentorship Sessions</h3>
+                    <p className="text-sm text-gray-500">TBD</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-6">
-                <div className="bg-blue-600 text-white rounded-lg p-4 text-center min-w-[120px]">
-                  <p className="text-2xl font-bold">Day 2</p>
-                  <p className="text-sm">Saturday, June 11</p>
+              {/* Date 4 */}
+              <div className="relative flex flex-col md:flex-row items-center md:odd:flex-row-reverse">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
                 </div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Hacking Continues</h3>
-                        <p className="text-gray-600">All Day</p>
-                      </div>
-                      <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">All Areas</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Keep working on your projects. Lunch and dinner will be provided.</p>
+                <div className="md:w-5/12 px-4 py-2">
+                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <h3 className="font-medium text-gray-900">Final Presentations</h3>
+                    <p className="text-sm text-gray-500">TBD</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-6">
-                <div className="bg-blue-600 text-white rounded-lg p-4 text-center min-w-[120px]">
-                  <p className="text-2xl font-bold">Day 3</p>
-                  <p className="text-sm">Sunday, June 12</p>
+              {/* Date 5 */}
+              <div className="relative flex flex-col md:flex-row items-center md:odd:flex-row-reverse">
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center z-10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
                 </div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Final Submissions</h3>
-                        <p className="text-gray-600">10:00 AM</p>
-                      </div>
-                      <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Online</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Submit your final projects before the deadline.</p>
+                <div className="md:w-5/12 px-4 py-2">
+                  <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+                    <h3 className="font-medium text-gray-900">Winners Announced</h3>
+                    <p className="text-sm text-gray-500">TBD</p>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="flex items-start gap-6">
-                <div className="bg-white p-4 text-center min-w-[120px]"></div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Judging & Demos</h3>
-                        <p className="text-gray-600">1:00 PM - 3:00 PM</p>
-                      </div>
-                      <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Main Stage</span>
-                    </div>
-                    <p className="mt-2 text-gray-600">Present your projects to the judges and fellow participants.</p>
-                  </div>
+      {/* Rewards & Prizes Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="text-center space-y-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Rewards & Prizes</h2>
+            <p className="text-base text-gray-600">
+              Outstanding work deserves outstanding recognition
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Runner Up */}
+            <div className="flex flex-col items-center gap-4 p-6 border border-gray-200 rounded-xl">
+              <svg className="w-16 h-16 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+              <div className="text-center space-y-6">
+                <h3 className="text-xl font-semibold text-gray-900">Runner up Team</h3>
+                <div className="space-y-1">
+                  <p className="text-xl font-semibold font-bold text-gray-900">Rs.10,000/-</p>
+                  <p className="text-base text-gray-500">+E-Certificates</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Winner */}
+            <div className="flex flex-col items-center gap-4 p-6 border border-gray-200 rounded-xl">
+              <svg className="w-16 h-16 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"></path>
+              </svg>
+              <div className="text-center space-y-6">
+                <h3 className="text-xl font-semibold text-blue-400">Winner Team</h3>
+                <div className="space-y-1">
+                  <p className="text-xl font-semibold font-bold text-gray-900">Rs.15,000/-</p>
+                  <p className="text-base text-gray-500">+E-Certificates</p>
+                </div>
+                <p className="text-base text-gray-500">+Internship Opportunity</p>
+              </div>
+            </div>
+
+            {/* Other Recognitions */}
+            <div className="flex flex-col items-center gap-4 p-6 border border-gray-200 rounded-xl">
+              <svg className="w-16 h-16 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h5.25c.622 0 1.126.504 1.126 1.125v3.375m0 0h-3.75m3.75 0h3.375M9 6.75h6m-4.5 3v6m-3-3h6"></path>
+              </svg>
+              <h3 className="text-xl font-semibold text-gray-900 text-center">Other Recognitions</h3>
+              <div className="text-center space-y-2 text-sm text-gray-500">
+                <p>Top 5 Ideators - E-Certificates</p>
+                <p>Top 10 Teams - E-Certificates</p>
+                <p>Project Completion - E-Certificates</p>
+              </div>
+            </div>
+          </div>
+          
+          <p className="text-sm text-center text-gray-500">
+            NOTE: Names of Top 10 Team members will be displayed on the website
+          </p>
+        </div>
+      </section>
+
+      {/* How It Works & Evaluation Criteria */}
+      <section className="py-8 px-4 lg:px-8">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* How It Works */}
+          <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-8">
+            <h2 className="text-xl font-bold text-gray-900">How It Works</h2>
+
+            <div className="space-y-6">
+              {/* Step 1 */}
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">1</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base font-semibold text-gray-900">Register</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Register individually or as a 2-member team. Earn extra points by submitting your idea during registration.
+                  </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-6">
-                <div className="bg-white p-4 text-center min-w-[120px]"></div>
-                <div className="flex-1">
-                  <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h3 className="text-xl font-semibold text-gray-900">Closing Ceremony & Awards</h3>
-                        <p className="text-gray-600">4:00 PM - 5:00 PM</p>
+              {/* Step 2 */}
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">2</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base font-semibold text-gray-900">Build</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Participate in the 48-hour virtual hackathon and build your solution.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">3</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base font-semibold text-gray-900">Submit</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Submit GitHub link, live demo link (Vercel/Netlify), and description.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="flex gap-3">
+                <div className="w-8 h-8 rounded-full bg-blue-400 flex items-center justify-center flex-shrink-0">
+                  <span className="text-sm font-bold text-white">4</span>
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base font-semibold text-gray-900">Win</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Winners will be invited for internship interviews.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Evaluation Criteria */}
+          <div className="rounded-lg border border-gray-200 bg-white p-6 space-y-8">
+            <h2 className="text-xl font-bold text-gray-900">Evaluation Criteria</h2>
+
+            <div className="space-y-6">
+              {/* Criterion 1 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-600">Successful Implementation</span>
+                  <span className="text-xs text-gray-600">50%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '50%' }}></div>
+                </div>
+              </div>
+
+              {/* Criterion 2 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-600">Innovation</span>
+                  <span className="text-xs text-gray-600">20%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '20%' }}></div>
+                </div>
+              </div>
+
+              {/* Criterion 3 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-600">User Experience & Design</span>
+                  <span className="text-xs text-gray-600">10%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '10%' }}></div>
+                </div>
+              </div>
+
+              {/* Criterion 4 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-600">Documentation</span>
+                  <span className="text-xs text-gray-600">10%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '10%' }}></div>
+                </div>
+              </div>
+
+              {/* Criterion 5 */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-600">New Ideas Submission</span>
+                  <span className="text-xs text-gray-600">10%</span>
+                </div>
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                  <div className="h-full bg-blue-500 rounded-full" style={{ width: '10%' }}></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hackathon Challenges Section */}
+      <section className="py-8 px-4 lg:px-8 bg-white" id="challenges">
+        <div className="max-w-[1689px] mx-auto space-y-6">
+          <h2 className="text-[35px] font-bold text-gray-900 leading-10 text-center">Hackathon Challenges</h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Problem 1 - Collapsed View */}
+            {!problem1Expanded && (
+              <div className="rounded-lg border border-gray-300 bg-white p-9 space-y-6 flex flex-col">
+                <div className="flex items-center gap-3">
+                  <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                  </svg>
+                  <h3 className="text-[24px] font-bold text-gray-900">Problem 1: Build A Custom Android Calendar App</h3>
+                </div>
+
+                <p className="text-base text-gray-700 leading-6">
+                  Today we juggle multiple digital calendars across platforms like Google, Apple, and Outlook. Your challenge is to design and develop an Android application that aggregates events from multiple external calendars into one unified, user-friendly interface.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h4 className="text-base font-semibold text-gray-900">Technology To Use</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">React Native / Flutter</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Fast API / Flask / Django / NodeJS</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">PostgreSQL / MongoDB / MySQL</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">User's Choice</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                    <h4 className="text-base font-semibold text-gray-900">Deliverables</h4>
+                  </div>
+                  <p className="text-base text-gray-700 leading-6">
+                    An android app that solves the core problem with features for multi-calendar integration, unified view, and event management.
+                  </p>
+                </div>
+
+                <div className="mt-auto pt-4">
+                  <button
+                    onClick={() => setProblem1Expanded(true)}
+                    className="w-full py-2 text-base font-medium text-gray-900 hover:text-gray-600 transition-colors border-t border-gray-200"
+                  >
+                    Click to Expand
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Problem 1 - Expanded View */}
+            {problem1Expanded && (
+              <div className="rounded-lg border border-gray-300 bg-white p-9 space-y-6 col-span-2 lg:col-span-1">
+                <div className="flex items-center gap-3">
+                  <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                  </svg>
+                  <h3 className="text-[24px] font-bold text-gray-900">Problem 1: Build A Custom Android Calendar App</h3>
+                </div>
+
+                <p className="text-base text-gray-700 leading-6">
+                  Today we juggle multiple digital calendars across platforms like Google, Apple, and Outlook. Your challenge is to design and develop an Android application that aggregates events from multiple external calendars into one unified, user-friendly interface.
+                </p>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <h4 className="text-base font-semibold text-gray-900">Technology To Use</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">React Native / Flutter</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Fast API / Flask / Django / NodeJS</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">PostgreSQL / MongoDB / MySQL</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">User's Choice</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                    <h4 className="text-base font-semibold text-gray-900">Deliverables</h4>
+                  </div>
+                  <p className="text-base text-gray-700 leading-6">
+                    An android app that solves the core problem. Features: Multi-Calendar Integration, Unified Calendar View, Invite & Event Management, Visual Indicators, and User Experience with day/week/month views.
+                  </p>
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded space-y-3 max-h-80 overflow-y-auto">
+                  <h5 className="font-semibold text-sm text-gray-900">Key Features to Implement:</h5>
+                  <div className="text-xs text-gray-700 space-y-2">
+                    <div>
+                      <p className="font-semibold">1. Multi-Calendar Integration</p>
+                      <ul className="ml-4 list-disc space-y-1">
+                        <li>Connect Google, Apple, and Outlook Calendar</li>
+                        <li>Fetch and update events in real-time</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-semibold">2. Unified Calendar View</p>
+                      <ul className="ml-4 list-disc space-y-1">
+                        <li>Display all events in one consolidated view</li>
+                        <li>Filters to toggle between sources</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-semibold">3. Invite & Event Management</p>
+                      <ul className="ml-4 list-disc space-y-1">
+                        <li>Create and add new events</li>
+                        <li>Accept or decline invitations</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setProblem1Expanded(false)}
+                  className="w-full py-2 text-base font-medium text-gray-900 hover:text-gray-600 transition-colors border-t border-gray-200"
+                >
+                  Click to Collapse
+                </button>
+              </div>
+            )}
+
+            {/* Problem 2 - Collapsed View */}
+            {!problem2Expanded && (
+              <div className="rounded-lg border border-gray-300 bg-white p-9 space-y-6 flex flex-col">
+                <div className="flex items-center gap-3">
+                  <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                  </svg>
+                  <h3 className="text-[24px] font-bold text-gray-900">Problem 2: Stock Returns Prediction with CNNs</h3>
+                </div>
+
+                <p className="text-base text-gray-700 leading-6">
+                  Build a Convolutional Neural Network (CNN) that can predict stock price movements by analyzing images of their price charts. Treat chart patterns as visual features for the model to learn.
+                </p>
+
+                <div className="space-y-3">
+                  <h4 className="text-base font-semibold text-gray-900">Tech Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Python</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">TensorFlow/Keras</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">PyTorch</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Yahoo Finance API</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Google Colab</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                    <h4 className="text-base font-semibold text-gray-900">Deliverables</h4>
+                  </div>
+                  <p className="text-base text-gray-700 leading-6">
+                    Data generation script, trained CNN model (.pkl file), inference script, and Google Colab notebook with working code.
+                  </p>
+                </div>
+
+                <div className="mt-auto pt-4">
+                  <button
+                    onClick={() => setProblem2Expanded(true)}
+                    className="w-full py-2 text-base font-medium text-gray-900 hover:text-gray-600 transition-colors border-t border-gray-200"
+                  >
+                    Click to Expand
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Problem 2 - Expanded View */}
+            {problem2Expanded && (
+              <div className="rounded-lg border border-gray-300 bg-white p-9 space-y-6 col-span-2 lg:col-span-1">
+                <div className="flex items-center gap-3">
+                  <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                  </svg>
+                  <h3 className="text-[24px] font-bold text-gray-900">Problem 2: Stock Returns Prediction with CNNs</h3>
+                </div>
+
+                <p className="text-base text-gray-700 leading-6">
+                  Build a Convolutional Neural Network (CNN) that can predict stock price movements by analyzing images of their price charts. Treat chart patterns as visual features for the model to learn.
+                </p>
+
+                <div className="space-y-3">
+                  <h4 className="text-base font-semibold text-gray-900">Tech Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Python</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">TensorFlow/Keras</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">PyTorch</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Yahoo Finance API</span>
+                    <span className="px-3 py-1 bg-blue-100 rounded text-xs text-gray-900">Google Colab</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                    <h4 className="text-base font-semibold text-gray-900">Deliverables</h4>
+                  </div>
+                  <ol className="text-xs text-gray-700 list-decimal ml-4 space-y-1">
+                    <li>Data generation script for stock charts</li>
+                    <li>Trained CNN model (.pkl file)</li>
+                    <li>Inference script for predictions</li>
+                    <li>Google Colab notebook</li>
+                  </ol>
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded space-y-3 max-h-80 overflow-y-auto">
+                  <h5 className="font-semibold text-sm text-gray-900">Project Phases:</h5>
+                  <div className="text-xs text-gray-700 space-y-2">
+                    <div>
+                      <p className="font-semibold">Phase 1: Data Preparation</p>
+                      <p className="text-xs">Generate 250 chart images per stock with rolling 1-year window from 2010 data</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Phase 2: Model Training</p>
+                      <p className="text-xs">Build and train CNN model on 500 generated images with labels (1/0/-1)</p>
+                    </div>
+                    <div>
+                      <p className="font-semibold">Phase 3: Inference Setup</p>
+                      <p className="text-xs">Create standalone script for predictions with RMSE evaluation</p>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setProblem2Expanded(false)}
+                  className="w-full py-2 text-base font-medium text-gray-900 hover:text-gray-600 transition-colors border-t border-gray-200"
+                >
+                  Click to Collapse
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Results & Statistics Section */}
+      <section className="py-20 px-4 lg:px-24 bg-gray-50">
+        <div className="max-w-[1689px] mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold text-gray-900 leading-10">Results & Statistics</h2>
+            <p className="text-xl text-gray-600 leading-7">A look at the numbers and the outcomes.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Statistics Box - Registration Statistics */}
+            <div className="rounded-lg border border-gray-300 bg-white p-8 space-y-6">
+              <h3 className="text-lg font-semibold text-gray-900 text-center mb-6">Registration Statistics</h3>
+              <div className="grid grid-cols-1 gap-6">
+                <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-blue-600">59</div>
+                    <div className="text-sm text-gray-600 font-medium">Total Candidates</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-blue-600">13</div>
+                    <div className="text-sm text-gray-600 font-medium">Total Ideas</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a3 3 0 11-6 0 3 3 0 016 0zm6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-blue-600">5</div>
+                    <div className="text-sm text-gray-600 font-medium">Completed Ideas</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Statistics Box - Submission Statistics */}
+            <div className="rounded-lg border border-gray-300 bg-white p-8 space-y-6">
+              <h3 className="text-lg font-semibold text-gray-900 text-center mb-6">Submission Statistics</h3>
+              <div className="grid grid-cols-1 gap-6">
+                <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-lg">
+                  <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-orange-600">7</div>
+                    <div className="text-sm text-gray-600 font-medium">Total Response Submitted</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-lg">
+                  <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-orange-600">5</div>
+                    <div className="text-sm text-gray-600 font-medium">Incomplete/Incorrect Response</div>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-4 bg-orange-50 rounded-lg">
+                  <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-orange-600">2</div>
+                    <div className="text-sm text-gray-600 font-medium">In Discussion</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Top Ideators Section */}
+      <section id="top-ideators" className="py-8 px-4 lg:px-8 bg-white">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <div className="text-center space-y-2">
+            <h2 className="text-2xl font-bold text-gray-900">Top Ideators</h2>
+            <p className="text-base text-gray-600">We appreciate your efforts. Congratulations!</p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[500px]">
+            {/* Top Ideas List */}
+            <div className="rounded-lg border border-gray-300 bg-white p-6 flex flex-col">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Submissions</h3>
+              <div className="space-y-4">
+                {[
+                  { rank: 1, title: "AI Guardrails for Support (CODERED Shield)", name: "Yoghesh R V" },
+                  { rank: 2, title: "Codebase Time Machine", name: "Lokeshwaran S" },
+                  { rank: 3, title: "Supply Chain Forecasting (Logistics AI)", name: "Anmol" },
+                  { rank: 4, title: "Crop Disease Detection (Agri AI)", name: "Nisha Ravi" }
+                ].map((idea) => (
+                  <div key={idea.rank} className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                    <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center flex-shrink-0">
+                      <span className="text-sm font-bold text-white">{idea.rank}</span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 truncate">{idea.title}</p>
+                      <div className="inline-block mt-1 px-2 py-0.5 bg-gray-800 rounded-md text-xs font-medium text-white">
+                        {idea.name}
                       </div>
-                      <span className="bg-red-100 text-red-800 text-xs
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Motivational Image */}
+            <div className="relative rounded-lg border border-gray-300 overflow-hidden h-full min-h-[300px]">
+              <img 
+                src="https://api.builder.io/api/v1/image/assets/TEMP/c13355c58b27d3ee390ea5340079becbdbb1955b?width=1608" 
+                alt="You got this" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                <h3 className="text-4xl font-bold text-white text-center leading-tight px-4">YOU GOT THIS!!!</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Want to Join Our Team Section */}
+      <section className="py-20 px-4 lg:px-24 bg-gray-50">
+        <div className="max-w-[1216px] mx-auto">
+          <div className="rounded-2xl bg-white shadow-sm p-12 text-center space-y-10">
+            <h2 className="text-[35px] font-bold text-gray-900 leading-10">Want to Join Our Team?</h2>
+            <p className="text-lg text-gray-600 leading-7 max-w-[625px] mx-auto">
+              We're always looking for talented individuals who share our passion for building great products. Reach out to learn about current opportunities.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                to="/Careers"
+                className="inline-flex items-center justify-center px-8 py-4 bg-black text-white border-2 border-black rounded-lg text-lg font-semibold hover:bg-gray-800 transition-colors gap-2"
+              >
+                Join Our Team 
+                <svg className="w-5 h-5" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.16699 10H15.8337" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10 4.1665L15.8333 9.99984L10 15.8332" stroke="currentColor" strokeWidth="1.66667" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+              <Link 
+                to="/Getintouch#contact" 
+                className="inline-flex items-center justify-center px-8 py-5 bg-black text-white border-2 border-black rounded-lg text-base font-bold hover:bg-gray-800 transition-colors"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+      <Footer />
+    </> 
+  );
+}

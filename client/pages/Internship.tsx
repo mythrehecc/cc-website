@@ -1,159 +1,136 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { typography, spacing } from "@/utils/typography";
+import Footer from "@/components/Footer";
+
+const scrollToSection = (sectionId: string) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
 function Header() {
   return (
     <header className="w-full bg-[#DBEAFE] shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4 md:px-8 max-w-[1920px] flex items-center justify-between h-16">
+      <div className={spacing.container + " flex items-center justify-between h-16"}>
         <Link to="/" className="flex items-center gap-2">
           <img 
             src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F7bcf3b6829fc467ea4a0c747871be1c5?format=webp&width=800" 
             alt="Crestcode Logo" 
-            className="w-11 h-11 object-contain"
+            className="w-10 h-10 object-contain"
           />
           <div className="flex flex-col">
-            <span className="text-[19px] font-bold leading-7 text-[#111827]">Crestcode</span>
-            <span className="text-[13px] font-normal leading-5 text-[#9CA3AF]">(India)</span>
+            <span className="text-gray-900 text-base font-bold">Crestcode</span>
+            <span className="text-gray-500 text-xs">(India)</span>
           </div>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/" className={typography.nav + " text-gray-600 hover:text-gray-900 transition-colors"}>
             Home
           </Link>
-          <Link to="/services" className="text-base font-normal leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">
+          <Link to="/services" className={typography.nav + " text-gray-900 hover:text-blue-500 transition-colors"}>
             Services
           </Link>
-          <Link to="/AboutUs" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/AboutUs" className={typography.nav + " text-gray-600 hover:text-gray-900 transition-colors"}>
             About Us
           </Link>
-          <Link to="/Blogs" className="text-base font-normal leading-6 text-[#374151] hover:text-[#111827] transition-colors">
+          <Link to="/Blogs" className={typography.nav + " text-gray-600 hover:text-gray-900 transition-colors"}>
             Blogs
           </Link>
         </nav>
-        <button className="bg-[#111827] text-[#DBEAFE] px-5 py-2 rounded font-semibold text-[15px] leading-6 hover:bg-[#1f2937] transition-colors">
+        <Button className="bg-gray-900 hover:bg-gray-800 text-blue-100">
           <Link to="/Getintouch">Get In Touch</Link>
-        </button>
+        </Button>
       </div>
     </header>
   );
 }
 
-function Footer() {
-  return (
-    <footer className="w-full bg-[#DBEAFE] py-12">
-      <div className="container mx-auto px-8 max-w-[1462px]">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-2 mb-6">
-              <img 
-                src="https://cdn.builder.io/api/v1/image/assets%2F5586001c824e4bba8f5b4c395a2b38ba%2F7bcf3b6829fc467ea4a0c747871be1c5?format=webp&width=800" 
-                alt="Crestcode Logo" 
-                className="w-11 h-11 object-contain"
-              />
-              <div className="flex flex-col">
-                <span className="text-[19px] font-bold leading-7 text-[#111827]">Crestcode</span>
-                <span className="text-[13px] font-normal leading-5 text-[#9CA3AF]">(India)</span>
-              </div>
-            </div>
-            <p className="text-[15px] leading-6 text-[#111827] mb-6 max-w-md">
-              Engineering digital products that matter. From idea to launch -
-              we build reliable, scalable, human-centered products for
-              startups, businesses, and entrepreneurs.
-            </p>
-          </div>
-          <div className="md:col-span-3">
-            <h4 className="text-base font-bold leading-6 text-[#111827] mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li><Link to="/Internship" className="text-[15px] leading-6 text-[#111827] font-bold hover:text-[#2563EB] transition-colors">Internships</Link></li>
-              <li><a href="#" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Privacy policy</a></li>
-              <li><Link to="/Getintouch" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Get In Touch</Link></li>
-              <li><Link to="/Hackathon" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Hackathon</Link></li>
-              <li><a href="#" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">Careers</a></li>
-            </ul>
-          </div>
-          <div className="md:col-span-4">
-            <h4 className="text-[15px] font-bold leading-6 text-[#111827] mb-4">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1 flex-shrink-0">
-                  <path d="M13.3335 2.66663H2.66683C1.93045 2.66663 1.3335 3.26358 1.3335 3.99996V12C1.3335 12.7363 1.93045 13.3333 2.66683 13.3333H13.3335C14.0699 13.3333 14.6668 12.7363 14.6668 12V3.99996C14.6668 3.26358 14.0699 2.66663 13.3335 2.66663Z" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M14.6668 4.66663L8.68683 8.46663C8.48101 8.59558 8.24304 8.66397 8.00016 8.66397C7.75729 8.66397 7.51932 8.59558 7.3135 8.46663L1.3335 4.66663" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <a href="mailto:contact@crestcode.in" className="text-[15px] leading-6 text-[#111827] hover:text-[#2563EB] transition-colors">contact@crestcode.in</a>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-1 flex-shrink-0">
-                  <path d="M13.3332 6.66671C13.3332 10.6667 7.99984 14.6667 7.99984 14.6667C7.99984 14.6667 2.6665 10.6667 2.6665 6.66671C2.6665 5.25222 3.22841 3.89567 4.2286 2.89547C5.2288 1.89528 6.58535 1.33337 7.99984 1.33337C9.41433 1.33337 10.7709 1.89528 11.7711 2.89547C12.7713 3.89567 13.3332 5.25222 13.3332 6.66671Z" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M8 8.66663C9.10457 8.66663 10 7.7712 10 6.66663C10 5.56206 9.10457 4.66663 8 4.66663C6.89543 4.66663 6 5.56206 6 6.66663C6 7.7712 6.89543 8.66663 8 8.66663Z" stroke="#111827" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span className="text-[15px] leading-5 text-[#111827]">Chennai, India</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="border-t border-[#4B5563] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[13px] leading-5 text-[#6B7280]">© 2025 Crestcode India. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="text-[13px] leading-5 text-[#6B7280] hover:text-[#111827] transition-colors">Privacy Policy</a>
-            <a href="#" className="text-[13px] leading-5 text-[#6B7280] hover:text-[#111827] transition-colors">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 export default function Internship() {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle email submission
-    console.log("Email submitted:", email);
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("http://localhost:8000/api/internship/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          strengths: "Interested in internship program"
+        }),
+      });
+
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.detail || `HTTP error! status: ${response.status}`);
+      }
+      
+      console.log("Application submitted:", data);
+      setSubmitStatus("success");
+      setEmail("");
+    } catch (error: any) {
+      console.error("Error submitting application:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
+      <main className="flex-grow pb-20">
       {/* Hero Section */}
-      <section className="w-full bg-[#9BB4C2] py-16 md:py-20 lg:py-24">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <div className="max-w-[743px] mx-auto text-center space-y-10 md:space-y-15">
-            <div className="space-y-6">
-              <h1 className="text-[#111827] text-5xl md:text-6xl font-bold leading-tight">
+      <section className="w-full bg-[#9BB4C2] py-10 md:py-12">
+        <div className={spacing.container}>
+          <div className={spacing.containerSmall + " text-center space-y-6"}>
+            <div className="space-y-4">
+              <h1 className={typography.h1}>
                 Internship
               </h1>
-              <p className="text-[#111827] text-xl md:text-[22px] leading-8">
+              <p className={typography.pLarge}>
                 Hands-on experience where learning meets real-world impact.
               </p>
             </div>
-            <button className="inline-flex px-6 py-4 md:px-8 md:py-5 justify-center items-center rounded bg-[#111827] text-white text-lg md:text-xl font-semibold leading-6 hover:bg-[#1f2937] transition-colors">
+            <Button size="lg" onClick={() => scrollToSection("internship-program")}>
               Join Our Internship Program
-            </button>
+            </Button>
           </div>
         </div>
       </section>
 
       {/* Internship Program Section */}
-      <section className="w-full py-16 md:py-20 lg:py-24">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <section id="internship-program" className="w-full py-10 md:py-12">
+        <div className={spacing.container}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <div className="space-y-5">
-              <h2 className="text-[#111827] text-5xl md:text-6xl lg:text-[64px] font-bold leading-tight">
+              <h2 className={typography.h2}>
                 Internship
                 <br />
                 Program
               </h2>
-              <p className="text-[#4B5563] text-2xl md:text-[28px] leading-10">
+              <p className={typography.pLarge}>
                 Our internship program immerses final-year students in real-world
                 design challenges, building user-centric solutions across product
                 experiences.
               </p>
               <div className="h-1 w-full bg-[#111827] max-w-[744px]"></div>
-              <p className="text-[#4B5563] text-2xl md:text-[28px] leading-10">
+              <p className={typography.pLarge}>
                 Now accepting applications for our internship program!
               </p>
             </div>
-            <div className="relative w-full aspect-video rounded-[30px] bg-[#D9D9D9] flex items-center justify-center">
+            <div className="relative w-full aspect-video rounded-[30px] bg-[#D9D9D9] flex items-center justify-center overflow-hidden">
               <button className="w-[116px] h-[116px] rounded-full bg-white flex items-center justify-center hover:scale-105 transition-transform">
                 <svg
                   width="46"
@@ -174,14 +151,14 @@ export default function Internship() {
       </section>
 
       {/* What can interns expect Section */}
-      <section className="w-full py-16 md:py-20">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <h2 className="text-[#111827] text-3xl md:text-4xl font-bold leading-tight text-center mb-12 md:mb-16">
+      <section className="w-full py-10 md:py-12">
+        <div className={spacing.container}>
+          <h2 className={typography.h2 + " text-center mb-8"}>
             What can interns expect during the program?
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 xl:gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Card 1 */}
-            <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-4">
               <svg
                 className="w-14 h-14"
                 width="56"
@@ -203,7 +180,7 @@ export default function Internship() {
                   fill="#60A5FA"
                 />
               </svg>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Begin your internship journey with a practical, real-world project
                 designed to evaluate your analytical thinking, creativity, and
                 problem-solving approach.
@@ -211,7 +188,7 @@ export default function Internship() {
             </div>
 
             {/* Card 2 */}
-            <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-4">
               <svg
                 className="w-14 h-14"
                 width="56"
@@ -226,7 +203,7 @@ export default function Internship() {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Candidates are assessed through hands-on project execution.
                 Successful completion unlocks the next stage of the selection
                 process.
@@ -234,7 +211,7 @@ export default function Internship() {
             </div>
 
             {/* Card 3 */}
-            <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-4">
               <svg
                 className="w-14 h-14"
                 width="56"
@@ -248,7 +225,7 @@ export default function Internship() {
                   fill="#60A5FA"
                 />
               </svg>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 High-performing candidates from the project phase are invited for
                 interviews, where skills, mindset, and real-time problem solving are
                 evaluated.
@@ -256,7 +233,7 @@ export default function Internship() {
             </div>
 
             {/* Card 4 */}
-            <div className="flex flex-col gap-6 md:gap-8">
+            <div className="flex flex-col gap-4">
               <svg
                 className="w-14 h-14"
                 width="56"
@@ -270,7 +247,7 @@ export default function Internship() {
                   fill="#60A5FA"
                 />
               </svg>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Gain hands-on exposure to real business and product challenges,
                 ensuring meaningful learning and industry-ready experience throughout
                 the internship.
@@ -281,55 +258,55 @@ export default function Internship() {
       </section>
 
       {/* Internship Evaluation Process */}
-      <section className="w-full py-16 md:py-20">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <h2 className="text-[#111827] text-3xl md:text-4xl font-bold leading-tight text-center mb-12 md:mb-16">
+      <section className="w-full py-10 md:py-12">
+        <div className={spacing.container}>
+          <h2 className={typography.h2 + " text-center mb-8"}>
             Internship Evaluation Process
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 xl:gap-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
-            <div className="border border-black rounded-[10px] p-10 space-y-3">
-              <div className="text-[#111827] text-4xl font-bold">01</div>
-              <h3 className="text-[#60A5FA] text-[34px] font-semibold leading-10">
+            <div className="border border-black rounded-[10px] p-6 space-y-2">
+              <div className="text-[#111827] text-2xl font-bold">01</div>
+              <h3 className="text-[#60A5FA] text-xl font-semibold">
                 Apply
               </h3>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Final-year students submit their application. Eligibility and profile
                 alignment are reviewed.
               </p>
             </div>
 
             {/* Step 2 */}
-            <div className="border border-black rounded-[10px] p-10 space-y-3">
-              <div className="text-[#111827] text-4xl font-bold">02</div>
-              <h3 className="text-[#60A5FA] text-[34px] font-semibold leading-10">
+            <div className="border border-black rounded-[10px] p-6 space-y-2">
+              <div className="text-[#111827] text-2xl font-bold">02</div>
+              <h3 className="text-[#60A5FA] text-xl font-semibold">
                 Assess
               </h3>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Shortlisted candidates complete a real-world project. Skills and
                 problem-solving ability are evaluated.
               </p>
             </div>
 
             {/* Step 3 */}
-            <div className="border border-black rounded-[10px] p-10 space-y-3">
-              <div className="text-[#111827] text-4xl font-bold">03</div>
-              <h3 className="text-[#60A5FA] text-[34px] font-semibold leading-10">
+            <div className="border border-black rounded-[10px] p-6 space-y-2">
+              <div className="text-[#111827] text-2xl font-bold">03</div>
+              <h3 className="text-[#60A5FA] text-xl font-semibold">
                 Interview
               </h3>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Successful candidates are invited for an interview. Approach,
                 communication, and thinking are assessed.
               </p>
             </div>
 
             {/* Step 4 */}
-            <div className="border border-black rounded-[10px] p-10 space-y-3">
-              <div className="text-[#111827] text-4xl font-bold">04</div>
-              <h3 className="text-[#60A5FA] text-[34px] font-semibold leading-10">
+            <div className="border border-black rounded-[10px] p-6 space-y-2">
+              <div className="text-[#111827] text-2xl font-bold">04</div>
+              <h3 className="text-[#60A5FA] text-xl font-semibold">
                 Offer
               </h3>
-              <p className="text-[#4B5563] text-2xl md:text-[20px] leading-10">
+              <p className={typography.p}>
                 Selected candidates receive an internship offer. Onboarding begins
                 based on performance.
               </p>
@@ -339,28 +316,28 @@ export default function Internship() {
       </section>
 
       {/* Is the Crestcode Internship Right for You? */}
-      <section className="w-full py-16 md:py-20 bg-[#F9FAFB]">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <h2 className="text-[#111827] text-3xl md:text-4xl font-semibold text-center mb-12 md:mb-16">
+      <section className="w-full py-12 md:py-16 bg-[#F9FAFB] mb-12">
+        <div className={spacing.container}>
+          <h2 className={typography.h2 + " text-center mb-8"}>
             Is the Crestcode Internship Right for You?
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column - Eligibility */}
-            <div className="space-y-10">
-              <div className="bg-[#DBEAFE] rounded-[20px] p-8 md:p-10 space-y-7">
-                <h3 className="text-[#111827] text-[30px] font-semibold leading-10">
+            <div className="flex flex-col space-y-4 h-full">
+              <div className="bg-[#DBEAFE] rounded-[14px] p-4 flex-1 flex flex-col">
+                <h3 className="text-base font-semibold text-gray-900 mb-2">
                   B.Tech Graduates
                 </h3>
-                <p className="text-[#4B5563] text-2xl leading-10">
+                <p className="text-lg text-gray-600 leading-normal flex-grow">
                   Final-year B.Tech students are eligible to apply. Applicants should
                   have a strong interest in gaining practical industry experience.
                 </p>
               </div>
-              <div className="bg-[#DBEAFE] rounded-[20px] p-8 md:p-10 space-y-3">
-                <h3 className="text-[#111827] text-[30px] font-semibold leading-10">
+              <div className="bg-[#DBEAFE] rounded-[14px] p-4 flex-1 flex flex-col">
+                <h3 className="text-base font-semibold text-gray-900 mb-2">
                   MBA Professionals
                 </h3>
-                <p className="text-[#4B5563] text-2xl leading-10">
+                <p className="text-lg text-gray-600 leading-normal flex-grow">
                   MBA professionals can apply for roles aligned with B.Tech domains.
                   Applicants should demonstrate relevant skills and an interest in
                   technical or product-driven work.
@@ -369,43 +346,44 @@ export default function Internship() {
             </div>
 
             {/* Right Column - Values */}
-            <div className="space-y-8">
-              <h3 className="text-[#2563EB] text-[30px] font-medium leading-10">
-                Internship Values
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 space-y-2">
-                  <h4 className="text-[#111827] text-xl font-semibold leading-10">
-                    Ownership
-                  </h4>
-                  <p className="text-[#4B5563] text-base leading-[30px]">
-                    Taking responsibility and driving tasks forward independently.
-                  </p>
-                </div>
-                <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 space-y-2">
-                  <h4 className="text-[#111827] text-xl font-semibold leading-10">
-                    User-Centric Thinking
-                  </h4>
-                  <p className="text-[#4B5563] text-base leading-10">
-                    Solving problems with a focus on user needs and business impact.
-                  </p>
-                </div>
-                <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 space-y-4">
-                  <h4 className="text-[#111827] text-xl font-semibold leading-10">
-                    Collaboration
-                  </h4>
-                  <p className="text-[#4B5563] text-base leading-10">
-                    Working effectively with teams through clear communication and
-                    shared goals.
-                  </p>
-                </div>
-                <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 space-y-5">
-                  <h4 className="text-[#111827] text-xl font-semibold leading-10">
-                    Impact
-                  </h4>
-                  <p className="text-[#4B5563] text-base leading-10">
-                    Creating meaningful, business-relevant outcomes.
-                  </p>
+            <div className="h-full">
+              <div className="bg rounded-[14px] p-6 h-full">
+                <h3 className={typography.h3 + " text-[#2563EB] mb-6"}>
+                  Internship Values
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 h-full flex flex-col">
+                    <h4 className={typography.h4 + " mb-2"}>
+                      Ownership
+                    </h4>
+                    <p className="text-[#4B5563] text-base flex-grow">
+                      Taking responsibility and driving tasks forward independently.
+                    </p>
+                  </div>
+                  <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 h-full flex flex-col">
+                    <h4 className={typography.h4 + " mb-2"}>
+                      User-Centric Thinking
+                    </h4>
+                    <p className="text-[#4B5563] text-base flex-grow">
+                      Solving problems with a focus on user needs and business impact.
+                    </p>
+                  </div>
+                  <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 h-full flex flex-col">
+                    <h4 className={typography.h4 + " mb-2"}>
+                      Collaboration
+                    </h4>
+                    <p className="text-[#4B5563] text-base flex-grow">
+                      Working effectively with teams through clear communication and shared goals.
+                    </p>
+                  </div>
+                  <div className="bg-[rgba(23,108,199,0.2)] rounded-[10px] p-5 h-full flex flex-col">
+                    <h4 className={typography.h4 + " mb-2"}>
+                      Impact
+                    </h4>
+                    <p className="text-[#4B5563] text-base flex-grow">
+                      Creating meaningful, business-relevant outcomes.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -413,39 +391,16 @@ export default function Internship() {
         </div>
       </section>
 
-      {/* Internship Reflection */}
-      <section className="w-full py-16 md:py-20 lg:py-24 bg-[#F9FAFB]">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <h2 className="text-[#111827] text-4xl md:text-6xl lg:text-[70px] font-bold leading-tight mb-12 md:mb-16 font-judson">
-            INTERNSHIP REFLECTION
-          </h2>
-          <div className="max-w-[994px] mx-auto text-center space-y-8">
-            <p className="text-[#4B5563] text-2xl md:text-[28px] leading-10">
-              This internship gave me valuable hands-on experience, helped me apply
-              my academic knowledge to real-world projects, and strengthened my
-              confidence, skills, and professional mindset."
-            </p>
-            <p className="text-[#111827] text-2xl md:text-[28px] leading-10 italic">
-              John Doe, B.Tech, Anna University.
-            </p>
-            <div className="flex justify-center gap-4 mt-8">
-              <div className="w-16 h-16 rounded bg-white/80"></div>
-              <div className="w-16 h-16 rounded bg-[#D9D9D9]"></div>
-              <div className="w-16 h-16 rounded bg-white/80"></div>
-              <div className="w-16 h-16 rounded bg-white/80"></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="h-16"></div>
 
       {/* E-Mail Us Your Strengths */}
-      <section className="w-full py-12 bg-[#9BB4C2] shadow-xl">
-        <div className="max-w-[1920px] mx-auto px-8">
-          <div className="max-w-[881px] mx-auto text-center space-y-5 mb-10">
-            <h2 className="text-[#111827] text-3xl md:text-[35px] font-bold leading-10">
+      <section className="w-full py-10 md:py-12 bg-[#9BB4C2] shadow-xl">
+        <div className={spacing.container}>
+          <div className="max-w-[800px] mx-auto text-center space-y-5 mb-10">
+            <h2 className={typography.h2}>
               E-Mail Us Your Strengths
             </h2>
-            <p className="text-[#111827] text-base md:text-[18px] leading-7">
+            <p className={typography.p + " text-[#111827]"}>
               Share your key strengths with us via email to help us understand your
               skills and areas of expertise. Highlight your abilities that can
               contribute effectively to real-world projects and team goals.
@@ -453,25 +408,40 @@ export default function Internship() {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="max-w-[1513px] mx-auto flex flex-col sm:flex-row gap-4"
+            className="max-w-[600px] mx-auto flex flex-col sm:flex-row gap-4"
           >
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-4 py-3.5 rounded-lg bg-white text-[#6B7280] text-[15px] leading-normal focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+              className="flex-1 px-3 py-2 rounded-lg bg-white text-[#6B7280] text-sm leading-normal focus:outline-none focus:ring-2 focus:ring-[#2563EB] h-11"
               required
+              disabled={isSubmitting}
             />
             <button
               type="submit"
-              className="px-12 py-4 rounded-lg bg-[#111827] text-white text-base font-bold leading-6 hover:bg-[#1f2937] transition-colors"
+              className="px-3 py-2 rounded-lg bg-[#111827] text-white text-base font-bold leading-6 hover:bg-[#1f2937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={isSubmitting}
             >
-              Send
+              {isSubmitting ? "Sending..." : "Send"}
             </button>
           </form>
+          
+          {submitStatus === "success" && (
+            <div className="max-w-[600px] mx-auto mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+              Thank you for your interest! We'll contact you soon about internship opportunities.
+            </div>
+          )}
+          
+          {submitStatus === "error" && (
+            <div className="max-w-[600px] mx-auto mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+              Failed to submit application. Please try again later.
+            </div>
+          )}
         </div>
       </section>
+      </main>
       <Footer />
     </div>
   );

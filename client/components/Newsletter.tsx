@@ -2,11 +2,36 @@ import { useState } from "react";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle newsletter subscription
-    console.log("Subscribe:", email);
+    setIsSubmitting(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("http://localhost:8000/api/newsletter/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage("Successfully subscribed! Thank you for joining our newsletter.");
+        setEmail("");
+      } else {
+        setMessage(data.detail || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      setMessage("Network error. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -34,11 +59,20 @@ export default function Newsletter() {
           />
           <button
             type="submit"
-            className="bg-[#111827] text-[#DBEAFE] px-8 py-3 rounded font-semibold text-[15px] leading-6 hover:bg-[#1f2937] transition-colors"
+            disabled={isSubmitting}
+            className="bg-[#111827] text-[#DBEAFE] px-8 py-3 rounded font-semibold text-[15px] leading-6 hover:bg-[#1f2937] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Subscribe
+            {isSubmitting ? "Subscribing..." : "Subscribe"}
           </button>
         </form>
+        
+        {message && (
+          <div className={`mt-4 text-center text-sm ${
+            message.includes("Successfully") ? "text-green-700" : "text-red-700"
+          }`}>
+            {message}
+          </div>
+        )}
       </div>
     </section>
   );
