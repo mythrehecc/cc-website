@@ -27,6 +27,11 @@ app.add_middleware(
 # Include routes
 app.include_router(router)
 
+@app.get("/")
+def root():
+    return {"message": "Backend is running"}
+
+
 @app.get("/api/ping")
 async def ping():
     ping_message = os.getenv("PING_MESSAGE", "ping")
