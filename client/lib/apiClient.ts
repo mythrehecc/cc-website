@@ -1,6 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 
-
 interface ApiResponse<T> {
   data?: T;
   error?: string;
@@ -21,6 +20,49 @@ export async function apiRequest<T>(
 
     if (!response.ok) {
       const error = await response.text();
+      throw new Error(`API request failed: ${error}`);
+    }
+
+    // For responses with no content
+    if (response.status === 204) {
+      return {};
+    }
+
+    const data = await response.json();
+    return { data };
+  } catch (error) {
+    console.error('API request error:', error);
+    return { error: error instanceof Error ? error.message : 'Unknown error occurred' };
+  }
+}
+
+// ----------------------------
+// Example API functions
+// Replace these with your actual FastAPI backend endpoints
+// ----------------------------
+
+// Example GET endpoint
+export async function getUsers(): Promise<ApiResponse<{ id: number; name: string }[]>> {
+  return apiRequest<{ id: number; name: string }[]>('/users');
+}
+
+// Example POST endpoint
+export async function login(
+  payload: { username: string; password: string }
+): Promise<ApiResponse<{ token: string }>> {
+  return apiRequest<{ token: string }>('/login', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+// Example GET endpoint with parameters
+export async function getUserById(
+  userId: number
+): Promise<ApiResponse<{ id: number; name: string }>> {
+  return apiRequest<{ id: number; name: string }>(`/users/${userId}`);
+}
+
       throw new Error(`API request failed: ${error}`);
     }
 
